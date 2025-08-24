@@ -1,0 +1,25 @@
+<div [class.hidden]="isHidden()" class="backdrop"></div>
+<div [class.hidden]="isHidden()" class="popup">
+  @let movie = selectedMovie | async;
+  @if (isLoading()) {
+    <div animate.leave="fade-out" class="loader">Загрузка...</div>
+  }
+  @if (movie) {
+    <div animate.enter="fade-in" class="movie-detail">
+      <img [ngSrc]="movie.Poster" alt="{{ movie.Title }}" height="450" width="300"/>
+      <div class="movie-info">
+        <h3>{{ movie.Title }}</h3>
+        <div>{{ movie.Year }}</div>
+        <div class="tag-list">
+          @for (genre of (movie.Genre | toTag); track genre.id) {
+            <span class="tag">{{ genre.name }}</span>
+          }
+        </div>
+        <div>
+          {{ movie.Plot }}
+        </div>
+      </div>
+    </div>
+  }
+  <app-button (buttonClick)="closePopUp()" class="button">Закрыть</app-button>
+</div>

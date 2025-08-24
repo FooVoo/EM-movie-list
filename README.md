@@ -1,59 +1,82 @@
-# EMMoviesList
+### 1. Процесс распространения событий в JavaScript (Event Propagation)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
+**Event Propagation** — это механизм, по которому событие, возникшее на одном элементе DOM, может быть обработано не только этим элементом, но и его родителями (и иногда потомками). Он состоит из трех фаз:
 
-## Development server
+1. **Capturing Phase (Фаза перехвата)**  
+   Событие начинает движение сверху (от корня документа, например `document`) вниз к целевому элементу.
 
-To start a local development server, run:
+2. **Target Phase (Целевая фаза)**  
+   Событие достигает самого элемента, на котором оно произошло (target).
 
-```bash
-ng serve
-```
+3. **Bubbling Phase (Фаза всплытия)**  
+   Событие "всплывает" обратно вверх от целевого элемента к корню документа.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+### 2. Promise в JavaScript, его состояния, альтернативы и Event Loop
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Promise** — это объект, представляющий результат асинхронной операции, которая может завершиться успешно или с ошибкой.
 
-```bash
-ng generate component component-name
-```
+**Основные состояния Promise:**
+1. **Pending (ожидание):** операция не завершена.
+2. **Fulfilled (выполнено):** операция завершена успешно.
+3. **Rejected (отклонено):** операция завершена с ошибкой.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+**Как работает:**
+- Создается через `new Promise((resolve, reject) => { ... })`.
+- Методы `.then()`, `.catch()`, `.finally()` позволяют обработать результат.
 
-```bash
-ng generate --help
-```
+**Альтернативные способы обработки асинхронного кода:**
+- **Callbacks (функции обратного вызова):** старый способ, часто ведет к "callback hell".
+- **Async/await:** синтаксис над Promises, позволяющий писать асинхронный код, похожий на синхронный.
 
-## Building
+**Роль Event Loop:**
+- **Event Loop (событийный цикл)** — механизм, который обрабатывает очередь событий и задач (callback, promise, timers) в JavaScript. Он позволяет выполнять асинхронный код, не блокируя основной поток выполнения.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+### 3. ООП и его реализация в JavaScript
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+**Объектно-Ориентированное Программирование (ООП)** — парадигма, в которой программа строится из объектов, взаимодействующих между собой.
 
-## Running unit tests
+**Ключевые принципы ООП:**
+1. **Инкапсуляция:** сокрытие деталей реализации, доступ к данным через методы.
+  - Пример: приватные свойства через символы или `#privateField` (ES2022).
+2. **Наследование:** один класс может наследовать свойства и методы другого.
+  - Пример: `class Animal {}; class Dog extends Animal {}`
+3. **Полиморфизм:** возможность объектов разных классов реализовывать одинаковые методы по-разному.
+  - Пример: переопределение метода `speak()` в наследниках.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+**Реализация ООП в JavaScript:**
+- Классы (`class`) и наследование (`extends`).
+- Прототипное наследование: объекты наследуют свойства и методы от других объектов через прототипы (`Object.create`, `__proto__`).
+- Инкапсуляция: приватные поля, методы, модули (через замыкания или ES2022 синтаксис).
+- Полиморфизм: переопределение методов в наследниках.
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+### 4. Как браузер обрабатывает URL: от ввода до отображения страницы
 
-For end-to-end (e2e) testing, run:
+**Процесс:**
+1. **Ввод URL:** пользователь вводит адрес.
+2. **DNS-резолвинг:** браузер определяет IP-адрес сервера через DNS.
+3. **Установка соединения:** TCP/UDP, TLS (для https).
+4. **Отправка HTTP(S) запроса:** браузер отправляет запрос на сервер.
+5. **Получение ответа:** сервер возвращает HTML-страницу.
+6. **Парсинг HTML:** браузер строит DOM-дерево.
+7. **Загрузка ресурсов:** CSS, JS, изображения — браузер параллельно загружает ресурсы.
+8. **Парсинг CSS, построение CSSOM:** строится дерево стилей.
+9. **Выполнение JavaScript:** формируется DOM, могут быть дополнительные загрузки.
+10. **Рендеринг (отрисовка):** браузер строит рендер-дерево, вычисляет layout и стили, отображает страницу.
 
-```bash
-ng e2e
-```
+**Технологии для ускорения:**
+- **Кэширование (HTTP Cache, Service Workers):** повторная загрузка ресурсов из кэша.
+- **CDN:** ускоряет доставку статических файлов.
+- **Preloading, Prefetching:** браузер заранее загружает критические ресурсы.
+- **HTTP/2, QUIC:** ускоряют передачу данных.
+- **Асинхронная загрузка ресурсов:** `<script async>`, `<link rel="preload">`.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Проблемы:**
+- **Безопасность:** XSS, CSRF, HTTPS, Mixed Content.
+- **Междоменное взаимодействие:** CORS (Cross-Origin Resource Sharing), ограничивает доступ к ресурсам с других доменов.
+- **Редиректы, блокировка контента:** браузер может блокировать вредоносный или подозрительный контент.

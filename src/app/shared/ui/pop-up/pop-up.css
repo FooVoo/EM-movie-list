@@ -1,0 +1,93 @@
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  display: contents;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  pointer-events: auto;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: 90vw;
+  max-height: 80vh;
+  min-width: 300px;
+  transition: height 0.3s, width 0.3s;
+  transform: translate(-50%, -50%);
+  background: var(--light-1);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  pointer-events: auto;
+  display: grid;
+  grid-template-areas:
+    "image detail"
+    "button button";
+  place-content: center;
+  gap: 1rem;
+  @media screen and (max-width: 767px) {
+    grid-template-areas:
+      "image"
+      "detail"
+      "button";
+  }
+}
+
+h3 {
+  margin: 0;
+  text-align: center;
+}
+
+img {
+  border-radius: 8px;
+  grid-area: image;
+}
+
+.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.tag-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: var(--light-3);
+  color: var(--primary);
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+}
+
+.movie-detail {
+  display: contents;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  grid-area: detail;
+}
+
+.loader {
+  text-align: center;
+}
+
+.button {
+  width: 100%;
+  flex-shrink: 0;
+  grid-area: button;
+}

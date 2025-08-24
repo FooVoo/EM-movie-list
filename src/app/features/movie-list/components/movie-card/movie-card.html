@@ -1,0 +1,12 @@
+<article (click)="onMovieSelected()" class="movie-card">
+  <img [ngSrc]="movie().Poster" [priority]="'high'" alt="{{ movie().Title }}" height="450" width="300"/>
+  <div class="info">
+    <h2>{{ movie().Title }}</h2>
+    <p class="text-sm italic">{{ movie().Year }}</p>
+    <div class="flex xl:gap-3 gap-1">
+      @for (tag of (movie().Genre | toTag); track tag.id) {
+        <span class="tag">{{ tag.name }}</span>
+      }
+    </div>
+  </div>
+</article>

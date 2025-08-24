@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--light-2);
+  border-radius: 1rem;
+  border: 1px solid var(--primary-dark);
+  @media screen and (max-width: 767px) {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .info {
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+img {
+  border-radius: 8px;
+}

@@ -1,0 +1,40 @@
+:host {
+  display: contents;
+}
+
+button {
+  border-radius: 8px;
+  scale: 1;
+  outline: none;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  max-width: 320px;
+
+  transition: scale 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    scale: 1.1;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    scale: 1;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 0.5rem;
+  }
+}
+
+.secondary {
+  background: transparent;
+  color: var(--light-1);
+}
+
+.primary {
+  background: var(--primary);
+  color: var(--light-1);
+}

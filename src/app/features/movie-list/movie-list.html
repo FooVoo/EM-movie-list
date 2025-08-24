@@ -1,0 +1,34 @@
+<main class="movies-list">
+  @let movies = movies$ | async;
+  <header class="list-header">
+    <h1 class="text-xl">Каталог фильмов</h1>
+    <app-search-bar (searchRequest)="onSearch($event)"></app-search-bar>
+  </header>
+  <section class="movies-grid">
+    @if (showHelpText()) {
+      <div>
+        Введите название фильма в поисковую строку выше, чтобы начать поиск.
+      </div>
+    }
+    @for (movie of movies?.movies; track movie.imdbID) {
+      <app-movie-card animate.enter="fade-in" animate.leave="fade-out" [movie]="movie"
+                      (movieSelected)="onMovieSelected($event)"></app-movie-card>
+    } @empty {
+      @let search = searchTerm | async;
+      @if (search && !isLoading()) {
+        <div>По запросу "{{ search }}" ничего не найдено</div>
+      }
+    }
+  </section>
+  @if (movies && movies.movies.length > 0) {
+    <footer class="list-footer" animation.enter="slide-in" animation.leave="slide-out">
+      <app-button (buttonClick)="loadMore()" [disabled]="isLoading()"
+                  class="load-more">
+        Показать еще
+      </app-button>
+      <div>
+        Показано {{ movies.movies.length }} из {{ movies.totalResults }} фильмов
+      </div>
+    </footer>
+  }
+</main>

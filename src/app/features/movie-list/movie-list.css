@@ -1,0 +1,58 @@
+:host {
+  margin: 1rem;
+  @media screen and (max-width: 1024px) {
+    margin: 0;
+  }
+}
+
+.movies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: var(--default-border);
+  background: var(--light-1);
+  @media screen and (max-width: 767px) {
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border: unset;
+  }
+}
+
+.list-header {
+  position: sticky;
+  top: 0;
+  background: var(--light-1);
+  padding: 1.5rem;
+  @media screen and (max-width: 767px) {
+    padding: 0.5rem 0;
+  }
+}
+
+.list-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  background: var(--light-1);
+  padding: 1rem;
+  gap: 1rem;
+  @media screen and (max-width: 767px) {
+    padding: 0.5rem;
+  }
+}
+
+.movies-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
+  @media screen and (max-width: 767px) {
+    gap: 0.5rem;
+    grid-template-columns: 1fr;
+  }
+}
+

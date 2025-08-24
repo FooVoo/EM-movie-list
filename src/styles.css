@@ -1,1 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #8acc0f;
+  --primary-dark: #72A80C;
+
+  --light-1: #FFFFFF;
+  --light-2: #F8FAF4;
+  --light-3: #E8EDDE;
+
+  --dark-1: #2B3617;
+  --dark-2: #46532D;
+  --dark-3: #5F6B47;
+
+  --default-border: 1px solid var(--dark-3);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--light-2);
+  color: var(--dark-1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn .5s;
+}
+
+.fade-out {
+  animation: fadeOut .5s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.slide-in {
+  animation: slideIn .5s;
+}
+
+.slide-out {
+  animation: slideOut .5s;
+}
